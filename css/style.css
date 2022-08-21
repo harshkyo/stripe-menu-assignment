@@ -72,10 +72,51 @@ body {
   display: block;
 }
 
+.dropdown-box-container {
+  display: flex;
+  justify-content: center;
+  position: absolute;
+  top: 49.33px;
+  width: 100%;
+  height: 80vh;
+}
+
+.dropdown-box-menu {
+  padding-top: 12px;
+  background-color: black;
+}
+
+.arrow {
+  position: absolute;
+  display: block;
+  width: 12px;
+  height: 12px;
+  top: -5px;
+  margin: 0 0 0 -6px;
+  transform: translateY(12px) translateX(-122.875px) rotate(45deg);
+  transition: transform 0.2s linear;
+  left: calc(680.2396087646484px - ((118.51042175292969px) / 2));
+  border-radius: 3px 0 0 0;
+  background-color: white;
+  z-index: 2;
+}
+
+.dropdown-box-body {
+  border-radius: 5px;
+  background-color: white;
+  width: 604px;
+  height: 100px;
+}
+
+.dropdown-box-body-left {
+}
+
+.dropdown-box-body-right {
+}
+
+/*Mobile menu starts here*/
 .mobile-nav {
   display: none;
-
-  /* margin: 20px; */
 }
 
 .mobile-nav hr {
@@ -100,7 +141,7 @@ body {
 
 .mobile-menu-list {
   display: grid;
-  grid: auto/repeat(4,1fr);
+  grid: auto/repeat(4, 1fr);
   list-style: none;
   align-items: center;
   justify-content: flex-start;
@@ -138,13 +179,17 @@ body {
   margin-left: 6px;
 }
 
-.menu-btn {
+.menu-btn a {
   background-color: rgba(238, 238, 238, 0.121);
   width: 40px;
-  padding: 5px;
+  padding: 10px;
   display: flex;
   justify-content: center;
   border-radius: 50px;
+}
+
+.menu-btn a:hover {
+  background-color: rgba(255, 255, 255, 0.353);
 }
 
 .close-btn {
@@ -170,7 +215,7 @@ body {
   justify-content: center;
 }
 
-.signin-mobile-btn a{
+.signin-mobile-btn a {
   padding: 10px 20px;
   background-color: transparent;
   border: none;
@@ -209,20 +254,13 @@ body {
 
 @media only screen and (max-width: 750px) {
   .mobile-menu-list {
-    grid: auto/repeat(3,1fr);
+    grid: auto/repeat(3, 1fr);
   }
 }
 
 @media only screen and (max-width: 600px) {
   .mobile-menu-list {
-    grid: auto/repeat(2,1fr);
+    grid: auto/repeat(2, 1fr);
   }
 }
-
-
-
-/* .dropdown-box-container {
-  position: absolute;
-  width: 100%;
-  height: 80vh;
-} */
+/*Mobile menu ends here*/

@@ -1,37 +1,51 @@
 const triggers = document.querySelectorAll(".main-navigation-list-item");
-const background = document.querySelector(".dropdown-box");
-const nav = document.querySelector(".main-navigation-list");
+const arrow = document.querySelector(".arrow");
+const container = document.querySelector(".dropdown-box-container");
+var previousCenter = 0;
+var respectiveSection = null;
+var section = "";
 
 function handleEnter() {
-
-
   const dropdownCoords = this.getBoundingClientRect();
-  console.log(dropdownCoords);
-  // const navCoords = nav.getBoundingClientRect();
-  // const coords = {
-  //   height: dropdownCoords.height,
-  //   width: dropdownCoords.width,
-  //   top: dropdownCoords.top - navCoords.top,
-  //   left: dropdownCoords.left - navCoords.left,
-  // };
-  // console.log(coords.width);
-  // console.log(coords.height);
+  section = this.getAttribute("data-section");
+  respectiveSection = document.getElementsByClassName(section)[0];
 
-  // const backgroundarrow = document.querySelector(".arrow");
+  // if(section === "section4") {
+  //   respectiveSection.style.setProperty("width", `540px`);
+  // }
 
-  // // backgroundarrow.style.setProperty("top", `${coords.width}px`);
-  // // backgroundarrow.style.setProperty("left", `${coords.left}`);
-  // background.style.setProperty("width", `${coords.width}px`);
-  // background.style.setProperty("height", `${coords.height}px`);
-  // background.style.setProperty(
-  //   "transform",
-  //   `translate(${coords.left}px,${coords.top}px)`
-  // );
+  const coords = {
+    left: dropdownCoords.left,
+    right: dropdownCoords.right,
+    width: dropdownCoords.width,
+  };
+  const currentCenter = coords.right - coords.width / 2 - 10;
+  container.style.setProperty("display", `flex`);
+  respectiveSection.style.setProperty("display", `block`);
+  arrow.style.setProperty("left", `${currentCenter}px`);
+  if (previousCenter === 0) {
+    previousCenter = currentCenter;
+  } else if (previousCenter < currentCenter) {
+    arrow.style.setProperty("left", `${currentCenter}px`);
+    // arrow.style.setProperty("transform", `translate(${currentCenter}px)`);
+    previousCenter = currentCenter;
+  } else {
+    arrow.style.setProperty("left", `${currentCenter}px`);
+    // arrow.style.setProperty("transform", `translate(${currentCenter}px)`);
+    previousCenter = currentCenter;
+  }
+}
+
+function handleDropdownLeave() {
+  const sectionVal = this.getAttribute("data-section");
+  if (section !== sectionVal) {
+    container.style.setProperty("display", `none`);
+    respectiveSection.style.setProperty("display", `none`);
+  }
 }
 
 function handleLeave() {
-  // this.classList.remove("trigger-enter", "trigger-enter-active");
-  // background.classList.remove("open");
+  respectiveSection.addEventListener("mouseleave", handleDropdownLeave);
 }
 
 triggers.forEach((trigger) =>
@@ -42,7 +56,7 @@ triggers.forEach((trigger) =>
   trigger.addEventListener("mouseleave", handleLeave)
 );
 
-const menuContainer = document.querySelector('.mobile-menu-container');
+const menuContainer = document.querySelector(".mobile-menu-container");
 function handleMobileMenu() {
   menuContainer.style.setProperty("display", `block`);
 }

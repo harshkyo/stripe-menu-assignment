@@ -50,7 +50,7 @@ body {
   list-style: none;
 }
 
-.main-navigation-list-item button,
+.main-navigation-list-item,
 .main-navigation-list li a,
 .signin-nav a {
   padding: 10px 20px;
@@ -64,26 +64,38 @@ body {
   letter-spacing: 0.2px;
   color: white;
   text-decoration: none;
+  transition: color 0.2s ease;
+  z-index: 4;
+}
+
+.main-navigation-list-item button:hover,
+.main-navigation-list li a:hover {
+  color: rgba(255, 255, 255, 0.396);
 }
 
 .signin-nav a {
-  background-color: rgba(238, 238, 238, 0.121);
+  background-color: #635bff;
   border-radius: 50px;
   display: block;
+  transition: background-color 0.3s ease;
+}
+
+.signin-nav a:hover {
+  background-color: rgba(238, 238, 238, 0.599);
 }
 
 .dropdown-box-container {
-  display: flex;
+  display: none;
   justify-content: center;
   position: absolute;
   top: 49.33px;
   width: 100%;
   height: 80vh;
+  z-index: 4;
 }
 
 .dropdown-box-menu {
   padding-top: 12px;
-  background-color: black;
 }
 
 .arrow {
@@ -91,11 +103,10 @@ body {
   display: block;
   width: 12px;
   height: 12px;
-  top: -5px;
+  top: 6px;
   margin: 0 0 0 -6px;
-  transform: translateY(12px) translateX(-122.875px) rotate(45deg);
-  transition: transform 0.2s linear;
-  left: calc(680.2396087646484px - ((118.51042175292969px) / 2));
+  rotate: 45deg;
+  transition: left 0.5s ease-in;
   border-radius: 3px 0 0 0;
   background-color: white;
   z-index: 2;
@@ -105,13 +116,67 @@ body {
   border-radius: 5px;
   background-color: white;
   width: 604px;
-  height: 100px;
+  height: fit-content;
 }
 
 .dropdown-box-body-left {
 }
 
 .dropdown-box-body-right {
+}
+
+.section-body {
+  padding: 32px 32px 24px 32px;
+}
+
+
+.product-grid {
+  display: grid;
+  grid: auto/repeat(2, 1fr);
+  gap: calc(32px * 1.5) 32px;
+}
+
+.product-grid section h1{
+  margin-bottom: 32px;
+}
+
+.product-grid section ul{
+  list-style: none;
+  min-width: 254px;
+}
+
+.product-grid section ul li {
+  margin-top: 32px;
+}
+
+.product-grid section ul li div {
+  font-weight: 500;
+  font-size: 14px;
+  letter-spacing: 0.2px;
+  /* height: 32px; */
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  cursor: pointer;
+}
+
+.product-grid section ul li div div:last-child {
+  display: flex;
+  flex-direction: column;
+  /* justify-content: flex-start; */
+  align-items: flex-start;
+}
+
+.product-img {
+  display: inline-block;
+  width: 30px;
+  height: 30px;
+  background-color: grey;
+  margin-right: 10px;
+}
+
+.section1, .section2, .section3, .section4 {
+  display: none;
 }
 
 /*Mobile menu starts here*/

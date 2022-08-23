@@ -5,6 +5,8 @@ const menu = document.querySelector(".dropdown-box-menu");
 var previousCenter = 0;
 var respectiveSection = null;
 var section = "";
+var leftmostleft = 0;
+var rightmostright = 0;
 
 var sectionList = ["section1", "section2", "section3", "section4"];
 
@@ -17,29 +19,27 @@ function handleSections() {
   for (let index = 0; index < sectionList.length; index++) {
     const value = sectionList[index];
     var tempSection = document.getElementsByClassName(value)[0];
-    if(!flag && value != sectionVal) {
+    if (!flag && value != sectionVal) {
       tempSection.classList.add("section-body-left");
       tempSection.classList.remove("active-section-body");
       tempSection.classList.remove("section-body-right");
-    }
-    else if(flag && value != sectionVal) {
+    } else if (flag && value != sectionVal) {
       tempSection.classList.remove("section-body-left");
       tempSection.classList.remove("active-section-body");
       tempSection.classList.add("section-body-right");
-    }
-    else {
+    } else {
       flag = true;
-      // tempSection.style.setProperty("opacity", `1`);
       tempSection.classList.remove("section-body-left");
       tempSection.classList.add("active-section-body");
       tempSection.classList.remove("section-body-right");
     }
-
-    
   }
 }
 
 function handleEnter() {
+  leftmostleft = triggers[0].getBoundingClientRect().left;
+  rightmostright = triggers[3].getBoundingClientRect().right;
+
   const dropdownCoords = this.getBoundingClientRect();
   section = this.getAttribute("data-section");
   respectiveSection = document.getElementsByClassName(section)[0];
@@ -65,7 +65,7 @@ function handleEnter() {
   container.style.setProperty("opacity", `1`);
 
   arrow.style.setProperty("left", `${currentCenter}px`);
-  arrow.style.setProperty("opacity",`1`);
+  arrow.style.setProperty("opacity", `1`);
   if (previousCenter === 0) {
     previousCenter = currentCenter;
   } else if (previousCenter < currentCenter) {
@@ -77,18 +77,25 @@ function handleEnter() {
   }
 
   handleSections();
-
 }
 
 function handleDropdownEnter() {
-    handleSections();
+  handleSections();
 }
 
 function handleDropdownLeave() {
   container.style.setProperty("opacity", `0`);
 }
 
-function handleLeave() {
+function handleLeave(event) {
+  // console.log(event);
+  if (
+    event.clientY <= 22 ||
+    event.clientX <= leftmostleft ||
+    event.clientX >= rightmostright
+  ) {
+    container.style.setProperty("opacity", `0`);
+  }
   menu.addEventListener("mouseenter", handleDropdownEnter);
   menu.addEventListener("mouseleave", handleDropdownLeave);
 }

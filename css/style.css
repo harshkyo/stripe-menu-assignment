@@ -51,6 +51,10 @@ body {
   list-style: none;
 }
 
+.main-navigation-list-item {
+  cursor: default;
+}
+
 .main-navigation-list-item,
 .main-navigation-list li a,
 .signin-nav a {
@@ -65,8 +69,7 @@ body {
   letter-spacing: 0.2px;
   color: white;
   text-decoration: none;
-  transition: color 0.3s ease;
-  /* z-index: 4; */
+  z-index: 4;
 }
 
 .main-navigation-list-item button:hover,
@@ -181,7 +184,7 @@ body {
   display: inline-block;
   position: absolute;
   pointer-events: none;
-  transition: opacity 10ms ease-out, transform 10ms ease-in-out;
+  transition: opacity 10ms ease-out, transform 100ms ease-in;
 }
 
 .active-section-body {

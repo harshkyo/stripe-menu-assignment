@@ -531,6 +531,9 @@ body {
     padding: 16px 16px;
     width: 100%;
   }
+  .dropdown-box-container {
+    top: 100px;
+  }
   .main-navigation {
     display: none;
   }
